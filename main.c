@@ -4,5 +4,10 @@
 
 int main()
 {
-    printf("%s\n", get_next_line(text.txt));
+    int fd;
+
+    fd = open("text.txt", O_RDWR);
+    if (fd == -1)
+        return (NULL);
+    printf("%s\n", get_next_line(fd));
 }
