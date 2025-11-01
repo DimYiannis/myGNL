@@ -6,7 +6,7 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:29:16 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/10/31 21:22:34 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/01 13:57:31 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 
+char	*get_next_line(int fd);
 
 #endif
