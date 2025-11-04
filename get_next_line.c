@@ -76,6 +76,13 @@ char	*get_next_line(int fd)
 	ssize_t bytes;
 	static char	*stash;
 
+  if (!stash)
+  {
+    stash = malloc(1);    // allocate 1 byte for empty string
+    if (!stash)
+        return NULL;
+    stash[0] = '\0';      // empty string
+  }
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes = 1;
