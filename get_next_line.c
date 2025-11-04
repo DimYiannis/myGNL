@@ -19,14 +19,26 @@ static char *ft_join(char  *s1, char *s2)
   int len2;
   int i;
   int j;
-
+  
+  i = 0;
+  j = 0;
   len1 = ft_strlen(s1);
   len2 = ft_strlen(s2);
+  if (!s1)
+  {
+    s1 = malloc(1);
+    if (!s1)
+      return (NULL);
+    s1[0] = '\0';
+  }
   string = malloc(len1 + len2 + 1);
   if (!string)
     return (NULL);
-  while (s1[i++])
+  while (s1[i])
+  {
     string[i] = s1[i];
+    i++;
+  }
   while (s2[j])
     string[i++] = s2[j++];
   string[i] = '\0';
@@ -38,12 +50,12 @@ static char *extract_line(char **stash)
 {
   char *line;
   char *new_stash;
-  int i;
+  size_t i;
 
   i = 0;
   if (!stash)
     return (NULL);
-  while (*stash[i])
+  while (*stash[i] && (*stash)[i] != '\n')
     i++;
   if ((*stash)[i] == '\n') 
     line = ft_substr(*stash, 0, i + 1);
@@ -60,19 +72,19 @@ static char *extract_line(char **stash)
 
 char	*get_next_line(int fd)
 {
-	char		*buffer[BUFFER_SIZE + 1];
+  char	buffer[BUFFER_SIZE + 1];
 	ssize_t bytes;
 	static char	*stash;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	bytes_read = 1;
-  while (bytes_read > 0 && !ft_strchr(stash, '\n'))
+	bytes = 1;
+  while (bytes > 0 && !ft_strchr(stash, '\n'))
   {
-    bytes_read = read(fd, buffer, BUFFER_SIZE);
-    if (bytes_read < 0)
+    bytes = read(fd, buffer, BUFFER_SIZE);
+    if (bytes < 0)
       return(free(stash),stash = NULL, NULL);
-    buffer[bytes_read] = '\0';
+    buffer[bytes] = '\0';
     stash = ft_join(stash, buffer);
     if (!stash)
       return (NULL);
