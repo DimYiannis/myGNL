@@ -22,15 +22,15 @@ static char *ft_join(char  *s1, char *s2)
   
   i = 0;
   j = 0;
-  len1 = ft_strlen(s1);
-  len2 = ft_strlen(s2);
-  if (!s1)
+   if (!s1)
   {
     s1 = malloc(1);
     if (!s1)
       return (NULL);
     s1[0] = '\0';
   }
+  len1 = ft_strlen(s1);
+  len2 = ft_strlen(s2);
   string = malloc(len1 + len2 + 1);
   if (!string)
     return (NULL);
@@ -55,7 +55,7 @@ static char *extract_line(char **stash)
   i = 0;
   if (!stash)
     return (NULL);
-  while (*stash[i] && (*stash)[i] != '\n')
+  while ((*stash)[i] && (*stash)[i] != '\n')
     i++;
   if ((*stash)[i] == '\n') 
     line = ft_substr(*stash, 0, i + 1);
@@ -75,16 +75,17 @@ char	*get_next_line(int fd)
   char	buffer[BUFFER_SIZE + 1];
 	ssize_t bytes;
 	static char	*stash;
+  	
+  if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 
   if (!stash)
   {
-    stash = malloc(1);    // allocate 1 byte for empty string
+    stash = malloc(1);
     if (!stash)
         return NULL;
-    stash[0] = '\0';      // empty string
+    stash[0] = '\0';
   }
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
 	bytes = 1;
   while (bytes > 0 && !ft_strchr(stash, '\n'))
   {
