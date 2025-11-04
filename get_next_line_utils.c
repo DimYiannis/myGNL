@@ -58,10 +58,10 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 
-char	*ft_substr(char *s, int start, int len)
+char	*ft_substr(char *s, size_t start, size_t len)
 {
 	char	*sub;
-	int		i = 0;
+	size_t		i = 0;
 
 	if (!s || start >= ft_strlen(s))
 		return (ft_strdup(""));
