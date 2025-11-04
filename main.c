@@ -8,6 +8,6 @@ int main()
 
     fd = open("text.txt", O_RDWR);
     if (fd == -1)
-        return (NULL);
+        return (-1);
     printf("%s\n", get_next_line(fd));
 }
