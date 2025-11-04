@@ -34,9 +34,28 @@ static char *ft_join(char  *s1, char *s2)
   return (string);
 }
 
-static char */extract_line(char **stash)
+static char *extract_line(char **stash)
 {
+  char *line;
+  char *new_stash;
+  int i;
 
+  i = 0;
+  if (!stash)
+    return (NULL);
+  while (*stash[i])
+    i++;
+  if ((*stash)[i] == '\n') 
+    line = ft_substr(*stash, 0, i + 1);
+  else 
+    line = ft_substr(*stash, 0, i);
+   if ((*stash)[i] == '\n') 
+    new_stash = ft_strdup(*stash + i + 1);
+  else 
+    new_stash = NULL;
+  free(*stash);
+  *stash = new_stash;
+  return (line);
 }
 
 char	*get_next_line(int fd)
