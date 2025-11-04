@@ -29,7 +29,7 @@ static char *ft_join(char  *s1, char *s2)
     string[i] = s1[i];
   while (s2[j])
     string[i++] = s2[j++];
-  res[i] = '\0';
+  string[i] = '\0';
   free(s1);
   return (string);
 }
@@ -64,7 +64,7 @@ char	*get_next_line(int fd)
 	ssize_t bytes;
 	static char	*stash;
 
-	if (fr < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes_read = 1;
   while (bytes_read > 0 && !ft_strchr(stash, '\n'))
