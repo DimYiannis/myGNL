@@ -57,3 +57,21 @@ char	*ft_strdup(const char *s1)
 	s2 = s2 - len;
 	return (s2);
 }
+
+char	*ft_substr(char *s, int start, int len)
+{
+	char	*sub;
+	int		i = 0;
+
+	if (!s || start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	sub = malloc(len + 1);
+	if (!sub)
+		return (NULL);
+	while (i < len)
+		sub[i++] = s[start++];
+	sub[i] = '\0';
+	return (sub);
+}
