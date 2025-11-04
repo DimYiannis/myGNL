@@ -12,62 +12,51 @@
 
 #include "get_next_line.h"
 
+static char *ft_join(char  *s1, char *s2)
+{
+  char *string;
+  int len1;
+  int len2;
+  int i;
+  int j;
+
+  len1 = ft_strlen(s1);
+  len2 = ft_strlen(s2);
+  string = malloc(len1 + len2 + 1);
+  if (!string)
+    return (NULL);
+  while (s1[i++])
+    string[i] = s1[i];
+  while (s2[j])
+    string[i++] = s2[j++];
+  res[i] = '\0';
+  free(s1);
+  return (string);
+}
+
+static char */extract_line(char **stash)
+{
+
+}
+
 char	*get_next_line(int fd)
 {
-	char		*buffer;
-	int			res;
+	char		*buffer[BUFFER_SIZE + 1];
+	ssize_t bytes;
 	static char	*stash;
-	char		*stash_start;
-	static char	*stashwrite;
-	char		*line;
-	char		*line_start;
-	int			i;
 
-	if (BUFFER_SIZE <= 0)
+	if (fr < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!stash)
-	{
-		stash = malloc(BUFFER_SIZE + 1);
-		if (!stash)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		stash[0] = '\0';
-		stashwrite = stash;
-	}
-    i = 0;
-	stash_start = stash;
-    line = malloc(i + 1);
-	line_start = line;
-    
-	// populate stash
-	while (!ft_strchr(stash, '\n'))
-	{   
-        if (res == 0)
-            break;
-        res = read(fd, buffer, BUFFER_SIZE);
-		while (i++ < res)
-			*stashwrite++ = buffer[i];
-	}
-	*stashwrite = '\0';
-	free(buffer);
-    
-	// extract the line and put it in line
-	while (*stash_start != '\n' && *stash_start)
-		*line++ = *stash_start++;
-	*line = '\0';
-    
-	if (*stash_start == '\n')
-		stash_start++;
-    // reset stash
-	stashwrite = stash;
-    // copy the remaining
-	while (*stash_start)
-		*stashwrite++ = *stash_start++;
-	*stashwrite = '\0';
-	return (line_start);
+	bytes_read = 1;
+  while (bytes_read > 0 && !ft_strchr(stash, '\n'))
+  {
+    bytes_read = read(fd, buffer, BUFFER_SIZE);
+    if (bytes_read < 0)
+      return(free(stash),stash = NULL, NULL);
+    buffer[bytes_read] = '\0';
+    stash = ft_join(stash, buffer);
+    if (!stash)
+      return (NULL);
+  } 
+	return (extract_line(&stash));
 }
