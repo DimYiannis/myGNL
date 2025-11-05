@@ -6,7 +6,7 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:26:51 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/05 12:47:34 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:28:32 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static char *ft_join(char  *s1, char *s2)
 {
   char *string;
   int len1;
-  int len2;
   int i;
   int j;
 
@@ -36,8 +35,7 @@ static char *ft_join(char  *s1, char *s2)
   j = 0;
   no_stash(s1);
   len1 = ft_strlen(s1);
-  len2 = ft_strlen(s2);
-  string = malloc(len1 + len2 + 1);
+  string = malloc(len1 + 1);
   if (!string)
     return (NULL);
   while (s1[i])
@@ -78,7 +76,7 @@ static char *extract_line(char **stash)
 
 char	*get_next_line(int fd)
 {
-  char	buffer[BUFFER_SIZE + 1];
+  char	*buffer;
 	ssize_t bytes;
 	static char	*stash;
   	
@@ -91,6 +89,7 @@ char	*get_next_line(int fd)
         return NULL;
     stash[0] = '\0';
   }
+  buffer = malloc(BUFFER_SIZE + 1);
 	bytes = 1;
   while (bytes > 0 && !ft_strchr(stash, '\n'))
   {
@@ -99,6 +98,7 @@ char	*get_next_line(int fd)
       return(free(stash),stash = NULL, NULL);
     buffer[bytes] = '\0';
     stash = ft_join(stash, buffer);
+    free(buffer);
     if (!stash)
       return (NULL);
   } 
