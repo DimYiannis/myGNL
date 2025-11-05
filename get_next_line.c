@@ -6,11 +6,23 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:26:51 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/01 16:44:22 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/05 12:47:34 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char *no_stash(char *s)
+{
+  if (!s)
+  {
+    s = malloc(1);
+    if (!s)
+        return (NULL);
+    s[0] = '\0';
+  }
+  return (s);
+}
 
 static char *ft_join(char  *s1, char *s2)
 {
@@ -19,16 +31,10 @@ static char *ft_join(char  *s1, char *s2)
   int len2;
   int i;
   int j;
-  
+
   i = 0;
   j = 0;
-   if (!s1)
-  {
-    s1 = malloc(1);
-    if (!s1)
-      return (NULL);
-    s1[0] = '\0';
-  }
+  no_stash(s1);
   len1 = ft_strlen(s1);
   len2 = ft_strlen(s2);
   string = malloc(len1 + len2 + 1);
@@ -78,7 +84,6 @@ char	*get_next_line(int fd)
   	
   if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-
   if (!stash)
   {
     stash = malloc(1);
