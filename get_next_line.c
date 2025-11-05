@@ -76,7 +76,7 @@ char	*get_next_line(int fd)
 	ssize_t bytes;
 	static char	*stash;
   	
-  if (fd < 0 || BUFFER_SIZE <= 0)
+  if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
   if (!stash)
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
   while (bytes > 0 && !ft_strchr(stash, '\n'))
   {
     bytes = read(fd, buffer, BUFFER_SIZE);
-    if (bytes < 0)
+    if (bytes <= 0)
       return(free(stash),stash = NULL, NULL);
     buffer[bytes] = '\0';
     stash = ft_join(stash, buffer);
