@@ -68,7 +68,11 @@ static char	*extract_line(char **stash)
 	else
 		line = ft_substr(*stash, 0, i);
 	if ((*stash)[i] == '\n')
-		new_stash = ft_strdup(*stash + i + 1);
+  {
+    new_stash = ft_strdup(*stash + i + 1);
+    if (!new_stash)
+      return (free(*stash), *stash = NULL, line);
+  }
 	else
 		new_stash = NULL;
 	free(*stash);
@@ -82,7 +86,7 @@ char	*get_next_line(int fd)
 	ssize_t bytes;
 	static char	*stash;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
   stash = no_stash(stash);
   buffer = malloc(BUFFER_SIZE + 1);
@@ -93,11 +97,14 @@ char	*get_next_line(int fd)
   {
     bytes = read(fd, buffer, BUFFER_SIZE);
     if (bytes <= 0)
-      return(free(stash),stash = NULL, NULL);
+      return(free(stash), free(buffer), stash = NULL, NULL);
     buffer[bytes] = '\0';
     stash = ft_join(stash, buffer);
     if (!stash)
+    {
+      free(buffer);
       return (NULL);
+    }
   }
   free(buffer);
 	return (extract_line(&stash));
