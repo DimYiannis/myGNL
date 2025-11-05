@@ -20,5 +20,8 @@ int	main(void)
 	fd = open("text.txt", O_RDWR);
 	if (fd == -1)
 		return (-1);
-	printf("%s\n", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 }
