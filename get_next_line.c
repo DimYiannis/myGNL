@@ -6,25 +6,25 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:26:51 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/05 23:28:32 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:41:52 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *no_stash(char *s)
+static char	*no_stash(char *s)
 {
-  if (!s)
-  {
-    s = malloc(1);
-    if (!s)
-        return (NULL);
-    s[0] = '\0';
-  }
-  return (s);
+	if (!s)
+	{
+		s = malloc(1);
+		if (!s)
+			return (NULL);
+		s[0] = '\0';
+	}
+	return (s);
 }
 
-static char *ft_join(char  *s1, char *s2)
+static char	*ft_join(char *s1, char *s2)
 {
   char *string;
   int len1;
@@ -50,28 +50,28 @@ static char *ft_join(char  *s1, char *s2)
   return (string);
 }
 
-static char *extract_line(char **stash)
+static char	*extract_line(char **stash)
 {
-  char *line;
-  char *new_stash;
-  size_t i;
+	char	*line;
+	char	*new_stash;
+	size_t	i;
 
-  i = 0;
-  if (!stash)
-    return (NULL);
-  while ((*stash)[i] && (*stash)[i] != '\n')
-    i++;
-  if ((*stash)[i] == '\n') 
-    line = ft_substr(*stash, 0, i + 1);
-  else 
-    line = ft_substr(*stash, 0, i);
-   if ((*stash)[i] == '\n') 
-    new_stash = ft_strdup(*stash + i + 1);
-  else 
-    new_stash = NULL;
-  free(*stash);
-  *stash = new_stash;
-  return (line);
+	i = 0;
+	if (!stash)
+		return (NULL);
+	while ((*stash)[i] && (*stash)[i] != '\n')
+		i++;
+	if ((*stash)[i] == '\n')
+		line = ft_substr(*stash, 0, i + 1);
+	else
+		line = ft_substr(*stash, 0, i);
+	if ((*stash)[i] == '\n')
+		new_stash = ft_strdup(*stash + i + 1);
+	else
+		new_stash = NULL;
+	free(*stash);
+	*stash = new_stash;
+	return (line);
 }
 
 char	*get_next_line(int fd)
@@ -79,8 +79,8 @@ char	*get_next_line(int fd)
   char	*buffer;
 	ssize_t bytes;
 	static char	*stash;
-  	
-  if (fd <= 0 || BUFFER_SIZE <= 0)
+
+	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
   if (!stash)
   {

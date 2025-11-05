@@ -6,7 +6,7 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:27:26 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/01 14:46:17 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:17:48 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ char	*ft_strdup(const char *s1)
 char	*ft_substr(char *s, size_t start, size_t len)
 {
 	char	*sub;
-	size_t		i = 0;
+	size_t	i;
 
+	i = 0;
 	if (!s || start >= ft_strlen(s))
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
