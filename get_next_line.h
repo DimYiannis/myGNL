@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+#define BUFFER_SIZE  5
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);

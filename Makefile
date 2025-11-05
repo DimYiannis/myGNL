@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=n
+CFLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=5
 NAME = getnextline.a
 
 SRC = get_next_line.c get_next_line_utils.c
