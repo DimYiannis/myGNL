@@ -34,7 +34,6 @@ static char	*ft_join(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	s1 = no_stash(s1);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	string = malloc(len1 + len2 + 1);
