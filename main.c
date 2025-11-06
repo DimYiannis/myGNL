@@ -16,12 +16,22 @@
 int	main(void)
 {
 	int	fd;
-
+  char *s;
 	fd = open("text.txt", O_RDWR);
 	if (fd == -1)
 		return (-1);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+  s = get_next_line(fd);
+
+	printf("%s", s);
+  free(s);
+  s = get_next_line(fd);
+	printf("%s", s);
+  free(s);
+  s = get_next_line(fd);
+	printf("%s", s);
+  free(s);
+  s = get_next_line(fd);
+	printf("%s", s);
+  free(s);
+  close(fd);
 }
