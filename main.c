@@ -21,7 +21,8 @@ int	main(void)
 	if (fd == -1)
 		return (-1);
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd)); 
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }
+  
