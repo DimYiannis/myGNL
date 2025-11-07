@@ -89,11 +89,15 @@ char	*get_next_line(int fd)
   {
     bytes = read(fd, buffer, BUFFER_SIZE);
     if (bytes <= 0)
-      return(free(stash),stash = NULL, NULL);
+    {
+      if (stash && *stash)
+        return (extract_line(&stash));
+      free(stash);
+      stash = NULL;
+      return (NULL);
+    }
     buffer[bytes] = '\0';
     stash = ft_join(stash, buffer);
-    if (!stash)
-      return (NULL);
   } 
 	return (extract_line(&stash));
 }
