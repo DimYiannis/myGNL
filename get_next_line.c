@@ -90,16 +90,16 @@ char	*get_next_line(int fd)
 	while (bytes > 0 && !ft_strchr(stash, '\n'))
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes <= 0)
+    if (bytes == -1)
+      	return (free(stash), stash = NULL, NULL);
+		if (bytes == 0)
 			break ;
 		buffer[bytes] = '\0';
 		stash = ft_join(stash, buffer);
 		if (!stash)
 			return (NULL);
 	}
-	if (bytes == 0 && stash && *stash)
+	if (stash && *stash)
 		return (extract_line(&stash));
-	if ((!stash || *stash == '\0') && bytes <= 0)
-		return (free(stash), stash = NULL, NULL);
-	return (extract_line(&stash));
+	return (free(stash), stash = NULL, NULL);
 }
