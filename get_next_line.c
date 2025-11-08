@@ -6,7 +6,7 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:26:51 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/08 10:41:57 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/08 11:23:26 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ char	*get_next_line(int fd)
 	while (bytes > 0 && !ft_strchr(stash, '\n'))
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-    if (bytes == -1)
-      	return (free(stash), stash = NULL, NULL);
+		if (bytes == -1)
+			return (free(stash), stash = NULL, NULL);
 		if (bytes == 0)
 			break ;
 		buffer[bytes] = '\0';
