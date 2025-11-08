@@ -33,7 +33,7 @@ Returns NULL when there’s nothing more to read or an error occurs.
 
 get_next_line reads chunks of text of size BUFFER_SIZE from a file descriptor using read(), and builds complete lines dynamically.
 
-# Main steps:
+## Main steps:
 
 Read into a temporary buffer.
 
