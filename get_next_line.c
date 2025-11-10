@@ -6,7 +6,7 @@
 /*   By: ydimitra <ydimitra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:26:51 by ydimitra          #+#    #+#             */
-/*   Updated: 2025/11/08 11:23:26 by ydimitra         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:53:56 by ydimitra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_join(char *s1, char *s2)
 	len2 = ft_strlen(s2);
 	string = malloc(len1 + len2 + 1);
 	if (!string)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[i])
 	{
 		string[i] = s1[i];
